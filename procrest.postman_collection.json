@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "1b6b8500-70ef-410d-9b13-7feb89327644",
-		"name": "Process",
+		"name": "procrest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -39,7 +39,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Initial\",\n    \"description\": \"Random description\"\n}",
+							"raw": "{\n    \"name\": \"deneme\",\n    \"description\": \"desc\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
