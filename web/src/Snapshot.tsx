@@ -50,7 +50,9 @@ export default function Snapshot() {
   }, []);
 
   async function addWrap(name: string, desc: string) {
-    const obj = await postSnapshot(name, desc);
+    let obj = await postSnapshot(name, desc);
+    obj.procs.sort((a, b) => a.pid - b.pid);
+
     const sns = await getSnapshots();
 
     setCur(obj);
