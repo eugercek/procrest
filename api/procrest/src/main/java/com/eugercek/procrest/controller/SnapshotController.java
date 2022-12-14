@@ -3,7 +3,9 @@ package com.eugercek.procrest.controller;
 import com.eugercek.procrest.data.entity.SnapshotEntity;
 import com.eugercek.procrest.service.SnapshotService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -22,7 +24,15 @@ public class SnapshotController {
 
     @GetMapping("/{id}")
     public SnapshotEntity getById(@PathVariable int id) {
-        return svc.getById(id);
+        try {
+            return svc.getById(id);
+        } catch (Exception e) {
+
+            // Spring captures this and returns somehow, good old magic
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "entity not found"
+            );
+        }
     }
 
     @PostMapping("")
@@ -32,6 +42,12 @@ public class SnapshotController {
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable int id) {
-        svc.deleteSnapshot(id);
+        try {
+            svc.deleteSnapshot(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "entity not found"
+            );
+        }
     }
 }

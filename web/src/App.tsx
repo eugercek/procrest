@@ -1,30 +1,19 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
-import { getAll } from "./service/service";
-
-interface Proc {
-  pid: number;
-  command: string;
-  argument: string;
-  start: Date;
-  duration: string;
-  userName: string;
-  alive: boolean;
-}
+import TopBar from "./TopBar";
+import Live from "./Live";
+import Snapshot from "./Snapshot";
 
 function App() {
-  const [procs, setProcs] = useState(Array<Proc>);
+  const [isLive, setIsLive] = useState(true);
 
-  useEffect(() => {
-    getAll()
-      .then((ps) => setProcs(ps))
-      .catch((err) => console.error(err));
-  }, []);
+  const style = {
+    margin: "10px",
+  };
 
   return (
-    <div className="App">
-      <h1>{procs.length}</h1>
+    <div>
+      <TopBar live={() => setIsLive(true)} snapshot={() => setIsLive(false)} />
+      <div style={style}>{isLive ? <Live /> : <Snapshot />}</div>
     </div>
   );
 }

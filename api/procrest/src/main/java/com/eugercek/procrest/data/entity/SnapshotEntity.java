@@ -1,6 +1,5 @@
 package com.eugercek.procrest.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +15,6 @@ import java.util.Set;
 public class SnapshotEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private int id;
 
     private String name;
